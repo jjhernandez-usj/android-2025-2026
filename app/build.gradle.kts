@@ -8,6 +8,8 @@ android {
         version = release(36)
     }
 
+    viewBinding.enable = true
+
     defaultConfig {
         applicationId = "es.usj.jjhernandez.mobileapps"
         minSdk = 31
