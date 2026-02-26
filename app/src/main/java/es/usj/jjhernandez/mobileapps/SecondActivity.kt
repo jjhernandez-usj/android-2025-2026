@@ -13,5 +13,12 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(view.root)
+        view.btnFinish.setOnClickListener { finished() }
+    }
+
+    fun finished() {
+        intent.putExtra("result", "Finished")
+        setResult(RESULT_OK, intent)
+        finish()
     }
 }
