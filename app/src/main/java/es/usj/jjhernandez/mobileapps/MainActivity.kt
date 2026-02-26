@@ -1,5 +1,6 @@
 package es.usj.jjhernandez.mobileapps
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
@@ -17,7 +18,8 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(view.root)
         view.btnSum.setOnClickListener {
-            view.tvResult.text = sum().toString()
+            //view.tvResult.text = sum().toString()
+            navigate()
         }
         view.btnSubtract.setOnClickListener {
             view.tvResult.text = subtract().toString()
@@ -55,6 +57,10 @@ class MainActivity : AppCompatActivity() {
         return firstNumber - secondNumber
     }
 
+    fun navigate() {
+        val intent = Intent(this, SecondActivity::class.java)
+        startActivity(intent)
+    }
 }
 
 fun EditText.toDouble(): Double {
