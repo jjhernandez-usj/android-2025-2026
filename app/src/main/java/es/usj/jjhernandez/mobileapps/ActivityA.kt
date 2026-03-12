@@ -29,6 +29,7 @@ class ActivityA : AppCompatActivity() {
     }
 
     fun goingToActivityC() {
-
+        val intent = Intent(this, ActivityC::class.java)
+        startActivity(intent)
     }
 }
