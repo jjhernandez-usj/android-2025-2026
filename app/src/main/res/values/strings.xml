@@ -3,4 +3,6 @@
     <string name="hello_world">Hello Android World!</string>
     <string name="launch_intent">Launch intent</string>
     <string name="finish">Finish</string>
+    <string name="to_a">To A</string>
+    <string name="to_d">To D</string>
 </resources>

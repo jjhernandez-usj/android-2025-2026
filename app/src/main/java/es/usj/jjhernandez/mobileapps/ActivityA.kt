@@ -1,5 +1,6 @@
 package es.usj.jjhernandez.mobileapps
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +24,8 @@ class ActivityA : AppCompatActivity() {
     }
 
     fun goingToActivityB() {
-
+        val intent = Intent(this, ActivityB::class.java)
+        startActivity(intent)
     }
 
     fun goingToActivityC() {
