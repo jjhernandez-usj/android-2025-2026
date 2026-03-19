@@ -1,15 +1,11 @@
 package es.usj.jjhernandez.mobileapps
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import es.usj.jjhernandez.mobileapps.databinding.ActivityBBinding
-import es.usj.jjhernandez.mobileapps.databinding.ActivityCBinding
 import androidx.core.net.toUri
+import es.usj.jjhernandez.mobileapps.databinding.ActivityCBinding
 
 class ActivityC : AppCompatActivity() {
     private val view by lazy {
@@ -20,10 +16,10 @@ class ActivityC : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(view.root)
-        view.BTNGOTOA.setOnClickListener { goingToActivityA()}
-        view.BTNCALL.setOnClickListener { doACall()}
-        view.BTNEMAIL.setOnClickListener { sendingEmail()}
-        }
+        view.btnCToA.setOnClickListener { goingToActivityA() }
+        view.btnCall.setOnClickListener { doACall() }
+        view.btnEmail.setOnClickListener { sendingEmail() }
+    }
 
     fun goingToActivityA() {
         val intent = Intent(this, ActivityA::class.java)
@@ -37,9 +33,10 @@ class ActivityC : AppCompatActivity() {
         startActivity(intent)
 
     }
-        fun sendingEmail() {
+
+    fun sendingEmail() {
         val intent = Intent(Intent.ACTION_SENDTO, "mailto:example@gmail.com".toUri())
-            startActivity(intent)
+        startActivity(intent)
     }
 
 }

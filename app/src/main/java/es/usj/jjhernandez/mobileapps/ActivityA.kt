@@ -11,6 +11,7 @@ class ActivityA : AppCompatActivity() {
     private val view by lazy {
         ActivityABinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

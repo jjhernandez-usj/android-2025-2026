@@ -8,19 +8,18 @@
     tools:context=".ActivityC">
 
     <Button
-        android:id="@+id/BTNGOTOA"
+        android:id="@+id/btnCToA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+        />
 
     <Button
-        android:id="@+id/BTNCALL"
+        android:id="@+id/btnCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DO CALL"
@@ -30,14 +29,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/BTNEMAIL"
+        android:id="@+id/btnEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SEND EMAIL"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" />
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
