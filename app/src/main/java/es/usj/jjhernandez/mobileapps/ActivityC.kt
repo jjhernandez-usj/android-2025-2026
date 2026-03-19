@@ -33,12 +33,13 @@ class ActivityC : AppCompatActivity() {
     fun doACall() {
         val intent = Intent(Intent.ACTION_DIAL, "tel:911".toUri())
 
-        intent.action = Intent.ACTION_DIAL
+
         startActivity(intent)
 
     }
         fun sendingEmail() {
-
+        val intent = Intent(Intent.ACTION_SENDTO, "mailto:example@gmail.com".toUri())
+            startActivity(intent)
     }
 
 }
