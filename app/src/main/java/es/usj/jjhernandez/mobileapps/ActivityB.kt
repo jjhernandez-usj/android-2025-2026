@@ -13,11 +13,13 @@ class ActivityB : AppCompatActivity() {
     private val view by lazy {
         ActivityBBinding.inflate(layoutInflater)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(view.root)
-        view.button5.setOnClickListener { goingToActivityA() }
+        view.btnBToA.setOnClickListener { goingToActivityA() }
+        view.btnBToD.setOnClickListener { goingToActivityD() }
     }
 
     fun goingToActivityA() {
@@ -25,15 +27,15 @@ class ActivityB : AppCompatActivity() {
         startActivity(intent)
     }
 
- val contract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-     (resultCode, data) ->
+    val contract =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { (resultCode, data) ->
 
-     if(resultCode == RESULT_OK){
-         val content = data?.getStringExtra("julio")?:""
-         view.tvRestult.text = content
+            if (resultCode == RESULT_OK) {
+                val content = data?.getStringExtra("julio") ?: ""
+                view.tvResult.text = content
 
-     }
- }
+            }
+        }
 
 
     fun goingToActivityD() {
