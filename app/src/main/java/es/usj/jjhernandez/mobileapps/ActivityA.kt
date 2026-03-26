@@ -17,19 +17,19 @@ class ActivityA : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(view.root)
         view.btnToB.setOnClickListener {
-            goingToActivityB()
+            goToB()
         }
         view.btnToC.setOnClickListener {
-            goingToActivityC()
+            goToC()
         }
     }
 
-    fun goingToActivityB() {
+    fun goToB() {
         val intent = Intent(this, ActivityB::class.java)
         startActivity(intent)
     }
 
-    fun goingToActivityC() {
+    fun goToC() {
         val intent = Intent(this, ActivityC::class.java)
         startActivity(intent)
     }

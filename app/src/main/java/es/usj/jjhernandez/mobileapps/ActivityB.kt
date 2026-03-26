@@ -9,39 +9,37 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import es.usj.jjhernandez.mobileapps.databinding.ActivityBBinding
 
+const val KEY = "message"
 class ActivityB : AppCompatActivity() {
+
     private val view by lazy {
         ActivityBBinding.inflate(layoutInflater)
     }
+
+    val contract =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { (resultCode, data) ->
+            if (resultCode == RESULT_OK) {
+                val content = data?.getStringExtra(KEY) ?: ""
+                view.tvResult.text = content
+            }
+        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(view.root)
-        view.btnBToA.setOnClickListener { goingToActivityA() }
-        view.btnBToD.setOnClickListener { goingToActivityD() }
+        view.btnBToA.setOnClickListener { goToA() }
+        view.btnBToD.setOnClickListener { goToD() }
     }
 
-    fun goingToActivityA() {
+    fun goToA() {
         val intent = Intent(this, ActivityA::class.java)
         startActivity(intent)
     }
 
-    val contract =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { (resultCode, data) ->
-
-            if (resultCode == RESULT_OK) {
-                val content = data?.getStringExtra("julio") ?: ""
-                view.tvResult.text = content
-
-            }
-        }
-
-
-    fun goingToActivityD() {
+    fun goToD() {
         val intent = Intent(this, ActivityD::class.java)
         contract.launch(intent)
-
-
     }
 }

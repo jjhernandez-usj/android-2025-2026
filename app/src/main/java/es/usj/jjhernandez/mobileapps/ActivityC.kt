@@ -8,6 +8,7 @@ import androidx.core.net.toUri
 import es.usj.jjhernandez.mobileapps.databinding.ActivityCBinding
 
 class ActivityC : AppCompatActivity() {
+
     private val view by lazy {
         ActivityCBinding.inflate(layoutInflater)
     }
@@ -16,25 +17,22 @@ class ActivityC : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(view.root)
-        view.btnCToA.setOnClickListener { goingToActivityA() }
-        view.btnCall.setOnClickListener { doACall() }
-        view.btnEmail.setOnClickListener { sendingEmail() }
+        view.btnCToA.setOnClickListener { goToA() }
+        view.btnCall.setOnClickListener { call() }
+        view.btnEmail.setOnClickListener { sendEmail() }
     }
 
-    fun goingToActivityA() {
+    fun goToA() {
         val intent = Intent(this, ActivityA::class.java)
         startActivity(intent)
     }
 
-    fun doACall() {
+    fun call() {
         val intent = Intent(Intent.ACTION_DIAL, "tel:911".toUri())
-
-
         startActivity(intent)
-
     }
 
-    fun sendingEmail() {
+    fun sendEmail() {
         val intent = Intent(Intent.ACTION_SENDTO, "mailto:example@gmail.com".toUri())
         startActivity(intent)
     }

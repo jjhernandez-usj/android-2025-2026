@@ -15,18 +15,13 @@ class ActivityD : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(view.root)
-        view.btnReturnToB.setOnClickListener { sendInfoToB() }
+        view.btnFinish.setOnClickListener { returnResult() }
     }
 
-    fun sendInfoToB() {
-
+    fun returnResult() {
         val text = view.tvUserInput.text
-
-        intent.putExtra("julio", "$text")
+        intent.putExtra(KEY, "$text")
         setResult(RESULT_OK, intent)
         finish()
-
     }
-
-
 }
