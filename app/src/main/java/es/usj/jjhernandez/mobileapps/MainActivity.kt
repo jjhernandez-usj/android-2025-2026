@@ -1,10 +1,14 @@
 package es.usj.jjhernandez.mobileapps
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import es.usj.jjhernandez.mobileapps.adapter.CustomArrayViewHolderAdapter
+import es.usj.jjhernandez.mobileapps.adapter.CustomPeopleViewHolderAdapter
 import es.usj.jjhernandez.mobileapps.databinding.ActivityMainBinding
+import es.usj.jjhernandez.mobileapps.model.People
+
+const val ID = "ID"
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,21 +16,22 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private fun generate(size: Int) : MutableList<String> {
-        return Array(size) { "Item $it" }.toMutableList()
-    }
+    lateinit var adapter : CustomPeopleViewHolderAdapter
 
-    lateinit var items : MutableList<String>
+    private val contract = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        adapter.notifyDataSetChanged()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(views.root)
-        items = generate(1000)
-        val adapter =
-            CustomArrayViewHolderAdapter(this, R.layout.row_element, items.toTypedArray())
-        views.lvArrayAdapter.adapter = adapter
+        adapter = CustomPeopleViewHolderAdapter(context = this, resourceId = R.layout.row_element, items = People.persons)
+        views.lvArrayAdapter.adapter = this.adapter
         views.lvArrayAdapter.setOnItemClickListener { _, _, position, _ ->
-            Toast.makeText(this, adapter.getItem(position), Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, DetailActivity::class.java)
+            val person = People.persons[position]
+            intent.putExtra(ID, person.id)
+            contract.launch(intent)
         }
     }
 }
