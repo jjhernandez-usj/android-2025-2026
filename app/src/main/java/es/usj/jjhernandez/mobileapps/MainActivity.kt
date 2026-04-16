@@ -1,7 +1,10 @@
 package es.usj.jjhernandez.mobileapps
 
 import android.os.Bundle
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.usj.jjhernandez.mobileapps.databinding.ActivityMainBinding
 
@@ -23,5 +26,9 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_list_item_1,
             generate(1000)
         )
+
+        views.lvArrayAdapter.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            Toast.makeText(this, (view as TextView).text, Toast.LENGTH_SHORT).show()
+        }
     }
 }
