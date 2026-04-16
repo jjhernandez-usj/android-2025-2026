@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             generate(1000)
         )
 
-        views.lvArrayAdapter.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+        views.lvArrayAdapter.onItemClickListener = AdapterView.OnItemClickListener { _, view, _, _ ->
             Toast.makeText(this, (view as TextView).text, Toast.LENGTH_SHORT).show()
         }
     }
