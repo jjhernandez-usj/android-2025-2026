@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MobileApps</string>
+    <string name="t1_text">T1, %1$s.</string>
+    <string name="t2_text">T2, %1$s.</string>
 </resources>
