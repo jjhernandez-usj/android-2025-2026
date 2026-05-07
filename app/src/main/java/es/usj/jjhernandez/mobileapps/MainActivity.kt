@@ -1,12 +1,20 @@
 package es.usj.jjhernandez.mobileapps
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import es.usj.jjhernandez.mobileapps.adapter.CustomPeopleViewHolderAdapter
+import com.google.gson.Gson
+import es.usj.jjhernandez.mobileapps.adapter.CustomActorViewHolderAdapter
 import es.usj.jjhernandez.mobileapps.databinding.ActivityMainBinding
+import es.usj.jjhernandez.mobileapps.model.Actor
+import es.usj.jjhernandez.mobileapps.model.DataStore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.net.URL
 
 const val ID = "ID"
+
+const val SERVER = "10.0.2.2"
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,17 +22,23 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    lateinit var adapter : CustomPeopleViewHolderAdapter
+    private val scope = CoroutineScope(Dispatchers.IO)
+
+    lateinit var adapter : CustomActorViewHolderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(views.root)
-        adapter = CustomPeopleViewHolderAdapter(context = this, resourceId = R.layout.row_element)
+        adapter = CustomActorViewHolderAdapter(context = this, resourceId = R.layout.row_element)
         views.lvArrayAdapter.adapter = this.adapter
-        views.lvArrayAdapter.setOnItemClickListener { _, _, _, _ ->
-           while(true) {
-               Log.d("LOOPING", "Until freeze")
-           }
+        scope.launch {
+            val url = URL("http://$SERVER:8080/actors")
+            val result = url.readText()
+            val actors = Gson().fromJson(result, Array<Actor>::class.java)
+            DataStore.addAll(actors.toList())
+            runOnUiThread {
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 }

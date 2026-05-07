@@ -1,5 +1,6 @@
 package es.usj.jjhernandez.mobileapps.adapter
 
+
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,9 +9,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import es.usj.jjhernandez.mobileapps.R
+import es.usj.jjhernandez.mobileapps.model.Actor
+import es.usj.jjhernandez.mobileapps.model.DataStore
 
-class CustomArrayViewHolderAdapter(context: Context, val resourceId: Int, items: Array<String>) :
-    ArrayAdapter<String>(context, resourceId, items) {
+class CustomActorViewHolderAdapter(
+    context: Context,
+    val resourceId: Int,
+) : ArrayAdapter<Actor>(context, resourceId, DataStore.actors) {
+
 
     class ViewHolder {
         lateinit var text1 : TextView
@@ -34,9 +40,8 @@ class CustomArrayViewHolderAdapter(context: Context, val resourceId: Int, items:
         }
         val value = getItem(position)
         val holder = view!!.tag as ViewHolder
-        holder.text1.text = context.resources.getString(R.string.t1_text, value)
-        holder.text2.text = context.resources.getString(R.string.t2_text, value)
-        Log.d("ADAPTER GET VIEW", value!!)
+        holder.text1.text = "${value?.id}"
+        holder.text2.text = value?.name ?: "Unknown"
         return view
     }
 }
