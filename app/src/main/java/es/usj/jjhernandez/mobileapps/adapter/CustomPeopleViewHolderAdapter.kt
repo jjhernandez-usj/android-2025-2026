@@ -9,13 +9,14 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import es.usj.jjhernandez.mobileapps.R
+import es.usj.jjhernandez.mobileapps.model.People
 import es.usj.jjhernandez.mobileapps.model.Person
 
 class CustomPeopleViewHolderAdapter(
     context: Context,
     val resourceId: Int,
-    items: MutableList<Person>
-) : ArrayAdapter<Person>(context, resourceId, items) {
+) : ArrayAdapter<Person>(context, resourceId, People.persons) {
+
 
     class ViewHolder {
         lateinit var text1 : TextView
