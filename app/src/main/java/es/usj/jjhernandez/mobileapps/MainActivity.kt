@@ -29,7 +29,9 @@ class MainActivity : AppCompatActivity() {
 
     private val actorDao: IDao<Actor> by lazy {
         //ActorDao(MoviesSQLiteOpenHelper(this))
-        ActorSPDao(this.getPreferences(MODE_PRIVATE))
+        //ActorSPDao(this.getPreferences(MODE_PRIVATE))
+        RoomDB.getDatabase(this).playerDao()
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
