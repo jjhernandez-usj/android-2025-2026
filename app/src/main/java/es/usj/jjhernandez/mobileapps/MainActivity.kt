@@ -27,12 +27,17 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var adapter : CustomActorViewHolderAdapter
 
+    private val actorDao: IDao<Actor> by lazy {
+        //ActorDao(MoviesSQLiteOpenHelper(this))
+        ActorSPDao(this.getPreferences(MODE_PRIVATE))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(views.root)
         adapter = CustomActorViewHolderAdapter(context = this, resourceId = R.layout.row_element)
         views.lvArrayAdapter.adapter = this.adapter
-        val actorDao = ActorDao(MoviesSQLiteOpenHelper(this))
+
         scope.launch {
             val url = URL("http://$SERVER:8080/actors")
             val result = url.readText()
@@ -41,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             actors.toList().forEach {
                 actorDao.insert(it)
             }
-            val found = actorDao.find(actors.toList()[0].id.toString())
+            val found = actorDao.findAll()
 
             runOnUiThread {
                 adapter.notifyDataSetChanged()
